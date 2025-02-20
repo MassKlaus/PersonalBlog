@@ -1,0 +1,164 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Minimalistic Blog Typography with Light & Dark Mode */
+
+:root {
+    --background: #ffffff;
+    --text: #212529;
+    --heading: #111827;
+    --link: #2563EB;
+    --link-hover: #1E40AF;
+    --code-bg: #F3F4F6;
+    --border: #E5E7EB;
+}
+
+/* user preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #121212;
+        --text: #E4E4E7;
+        --heading: #FFFFFF;
+        --link: #3B82F6;
+        --link-hover: #60A5FA;
+        --code-bg: #1E1E1E;
+        --border: #27272A;
+    }
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.75;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    font-family: sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 42em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    color: var(--heading);
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    color: var(--heading);
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 14px;
+    color: var(--heading);
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.75;
+    margin-bottom: 16px;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+blockquote {
+    font-size: 20px;
+    font-style: italic;
+    border-left: 4px solid var(--border);
+    padding-left: 16px;
+    margin: 20px 0;
+    color: #555;
+}
+
+small, .meta {
+    font-size: 14px;
+    color: #666;
+}
+
+pre {
+    background-color: var(--code-bg);
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: 'FiraCode-VF', monospace;
+}
+
+hr {
+    border: 1px solid var(--border);
+    margin: 16px 0;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    h1 { font-size: 32px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+}

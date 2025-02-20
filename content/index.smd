@@ -1,0 +1,15 @@
+---
+.title = "Home",
+.date = @date("2025-02-18T00:00:00"),
+.author = "Massine Mouha",
+.layout = "home.shtml",
+.draft = false,
+---
+# Software is fun, Let's get good at it
+
+Hi, I am Massine Mouha. I am learning how computers work and I want to dive into embedded systems after a while on the web side of things.
+
+So here I'll be posting about my projects, my thoughts and my learnings.
+
+Currently diving deeper with [Zig](https://ziglang.org/). And that's why this blog is powered with [Zine](https://zine-ssg.io/)!
+

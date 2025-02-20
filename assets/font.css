@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('Fonts/Raleway/Raleway-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+}
+
+@font-face {
+    font-family: 'Raleway Italic';
+    src: url('Fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+}
+
+@font-face {
+    font-family: 'Oxygen';
+    src: url('Fonts/Oxygen/Oxygen-Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Electrolize';
+    src: url('Fonts/Electrolize/Electrolize-Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'FiraCode-VF';
+    src: url('Fonts/FiraCode/FiraCode-VF.ttf') format('truetype');
+    font-weight: normal;
+}

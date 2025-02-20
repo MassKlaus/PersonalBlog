@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="A personal blog for keeping records, lessons and opinions as well as learning to make a snappy site.">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="$site.asset('font.css').link()">
+    <link rel="stylesheet" type="text/css" href="$site.asset('style.css').link()">
+    <link rel="stylesheet" type="text/css" href="$site.asset('code.css').link()">
+    <title id="title">
+      <super>
+      -
+      <ctx :text="$site.title"></ctx>
+    </title>
+  </head>
+  <body id="body">
+    <super>
+  </body>
+</html>

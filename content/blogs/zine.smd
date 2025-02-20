@@ -1,0 +1,31 @@
+---
+.title="A Blog powered by Zine",
+.description="A blog describing my enjoyement of Zine",
+.date=@date("2025-02-18T00:00:00"),
+.author="Massine Mouha",
+.layout="blog.shtml",
+.draft=false,
+---
+
+I've recently decided to start cataloging and expressing some of my thoughts in a more digestable way so I've come around to starting this blog site.
+
+I've dabbled with site genrators in the past but they all seemed overkill for what I needed, a simple site where I can categorize things and automatically generate links and turn mds into html with decent styling.
+
+Since I've been watching a lot of zig talks and videos all around, I came across zine. It has it's own superset of Markdown and Html and handles metadata with ziggy so I gave it a try and I am loving it.
+
+This is a snippet of how I generated the links in the home page
+
+```html
+<div>
+    <h2>Blogs</h2>
+    <div class="site-items" :loop="$site.page('blogs').subpages()">
+        <a href="$loop.it.link()" :text="$loop.it.title"></a>
+        <span class="date">
+            At
+            <span :text='$loop.it.date.format("01/02/2001")'></span>
+        </span>
+    </div>
+</div>
+```
+
+It's a lot more straightforward than I thought it would be and I am excited to see where this goes. But for now, I must resume my fight with css to make this site pretty.

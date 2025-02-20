@@ -1,0 +1,26 @@
+pre {
+    margin-bottom: 1rem;
+}
+
+code {
+    font-size: 1rem;
+}
+
+/* Syntax highlighting (adjust as needed) */
+code .keyword { color: #569CD6; }
+code .keyword.function { color: #569CD6; }
+code .special { color: #569CD6; }
+code .type.qualifier { color: #569CD6; }
+code .tag { color: #569CD6; }
+
+code .attribute { color: #9CDCFE; }
+code .variable { color: #9CDCFE; }
+code .field { color: #9CDCFE; }
+
+code .type.builtin { color: #4ec9b0; }
+
+code .string { color: #ce9178; }
+code .comment { color: #6A9955; font-style: italic; }
+code .number { color: #b5cea8; }
+code .function { color: #DCDCAA; }
+code .punctuation.bracket { color: #616161; }
