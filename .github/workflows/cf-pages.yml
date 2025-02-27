@@ -18,7 +18,7 @@ jobs:
           version: 0.13.0
       
       - name: Print File Content
-        run: ls -R ./assets/Fonts
+        run: ls -R ./assets/fonts
           
       - name: Build
         run: zig build --summary new
