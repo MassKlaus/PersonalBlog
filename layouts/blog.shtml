@@ -1,6 +1,49 @@
 <extend template="base.shtml">
 <title id="title" :text="$page.title"></title>
 <body id="body">
-  <h1 :text="$page.title"></h1>
+  <style>
+    #header h1, #top-bar h1 {
+      font-size: 2rem;
+      margin-bottom: 0rem;
+    }
+    #header span {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+    #top-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+    #top-bar a {
+      text-decoration: none;
+      font-size: 1rem;
+    }
+  </style>
+  <div id="top-bar">
+    <h1>Massine Mouha</h1>
+    <div>
+      <a href="/">Home</a>
+      <span>
+        •
+      </span>
+      <a href="/blogs/">Blog</a>
+      <span>
+        •
+      </span>
+      <a href="/projects/">Projects</a>
+    </div>
+  </div>
+  <hr>
+  <div id="header">
+    <h1 :text="$page.title"></h1>
+    <span>
+      Date of publication:
+      <span :text='$page.date.format("02/01/2006")'></span>
+    </span>
+  </div>
   <main id="content" :html="$page.content()"></main>
 </body>

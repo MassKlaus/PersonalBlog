@@ -1,5 +1,5 @@
 ---
-.layout = "home.shtml",
+.layout = "projects_home.shtml",
 .title = "Projects",
 .author="Massine Mouha",
 .date = @date("2025-02-18T00:00:00"),

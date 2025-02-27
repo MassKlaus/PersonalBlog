@@ -1,0 +1,45 @@
+<extend template="base.shtml">
+<title id="title" :text="$page.title"></title>
+<body id="body">
+  <style>
+    h1, h2 {
+    }
+    .highlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .site-items {
+      display: flex;
+      flex-direction: column;
+    } 
+    .date {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .highlight {
+        grid-template-columns: 1fr;
+      }
+
+      h2 {
+        text-align: left;
+      }
+    }
+  </style>
+  <main>
+    <section class="highlight">
+      <div>
+        <h2>Blogs</h2>
+        <div class="site-items" :loop="$site.page('blogs').subpages()">
+          <a href="$loop.it.link()" :text="$loop.it.title"></a>
+          <span class="date">
+            At
+            <span :text='$loop.it.date.format("02/01/2006")'></span>
+          </span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
