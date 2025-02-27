@@ -16,12 +16,12 @@ jobs:
         uses: mlugg/setup-zig@v1
         with:
           version: 0.13.0
-          
-      - name: Build
-        run: zig build --summary new
       
       - name: Print File Content
         run: ls ./assets/Fonts
+          
+      - name: Build
+        run: zig build --summary new
           
       - name: Deploy
         uses: cloudflare/pages-action@v1
