@@ -41,6 +41,5 @@ pub fn build(b: *std.Build) !void {
                 .lp = b.path("build.zig.zon"),
             },
         },
-        .debug = true,
     });
 }
