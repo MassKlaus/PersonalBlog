@@ -6,6 +6,23 @@ code {
     font-size: 1rem;
 }
 
+pre {
+    background-color: var(--code-bg);
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: 'FiraCode-VF', monospace;
+}
+
+p > code {
+    background-color: var(--code-bg);
+    padding: 6px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: 'FiraCode-VF', monospace;
+} 
+
+
 /* Syntax highlighting (adjust as needed) */
 code .keyword { color: #569CD6; }
 code .keyword.function { color: #569CD6; }

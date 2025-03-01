@@ -1,0 +1,57 @@
+---
+.title="How fast are our basic operations?",
+.description="I decided to benchmark a few basic operations that should be often considered atomic. Let's see how fast they are.",
+.author="Massine Mouha",
+.date=@date("2025-03-01T17:30:00"),
+.layout="blog.shtml",
+.draft=false
+---
+
+CPUs are insanely fast. So fast that my bad code still manages to run at blazing speeds on a debug build with 0 optimisations. 
+
+But if you're like me, you may want to know how fast exactly are these operations. First, we need to remove the idea of time as we see it in our daily lives. For computers, speed is about cycles. 1 Cpu cycle is often, depending on your CPU, below a nanosecond and the smallest unit we will use, is 1 cycle meaning the CPU does not idle Since I am refering to Latency rather than throuput.
+
+We will take a quick look at some basic operations from fastest to slowest.
+
+## Bitwise Operations
+
+These are all bit related operations such as `<<` `>>`  `&`  `|`  `~` and `^`. These are the fastest operations a CPU could possibly do. Taking 1 cycle to complete. 
+
+## Arithmetic Operations
+
+
+
+These are not all that easy to set, Arithmetic Operations `+` `-` `*` `/` tend to have different results.
+
+|Operation|Latency|
+|---------|-------|
+|Add +    |   1   |
+|Sub -    |   1   |
+|Mul *    |  3~5  |
+|Div /    |  10+  |
+
+We quickly notice that Division and Multiplication are Very Cycle hungry operations and probably should be avoided. But the variance is so small it quite honestly shouldn't matter. The real performance killer is much worse.
+
+# Memory Access
+
+For those who don't know, CPUs don't operate directly on Main Memory (RAM) instead it works on Registers and fetches memory to those registers before doing operations. 
+
+Accessing Main Memory is one of the most expensive tasks out there up to **100+ Cycles**. Yep, that's not a pretty number. Thankfully, modern CPUs have something called a cache. It's a small and extremely fast type of memory that sits next to the CPU cores reducing the wait time to get results.
+
+|Fetch From |Latency    |
+|-----------|-----------|
+|Registers  |   1       |
+|L1         |   1~4     |
+|L2         |   4~12    |
+|L3         |   10~40   |
+|Main Memory|   50~100+ |
+
+So a good bit of advice is making sure your memory does not get evicted from the cache as that would heavily break the performance of your code. 
+
+A rather amazing example of good cache usage is [matrix multiplication](https://youtu.be/EmzdmqUWq3o?t=280) where re-arranging the struct to be fully row based multiplication drastically improves the performance. 
+
+Another amazing example is [Deepseek cache optimisation](https://www.youtube.com/watch?v=iEda8_Mvvo4), The AI model. Their training time had been reduced by properly optimizing for caching by not evicting memory. In the memory the boost seems to be around 6.6% and that is for a simple machine. Now imagine, hunderds of thousands of them running in parallel. 
+
+## Conclusion
+
+Performance is nice so we should code while keeping it in the back of our mind, avoid bad cache alignements but don't stress too much about what operations to use. The compiler is your friend and will handle most common optimisations for you. This does not mean that you can simply slack off though! Till next time!

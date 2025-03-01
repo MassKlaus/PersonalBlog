@@ -141,18 +141,41 @@ small, .meta {
     color: #666;
 }
 
-pre {
-    background-color: var(--code-bg);
-    padding: 8px;
-    border-radius: 4px;
-    overflow-x: auto;
-    font-family: 'FiraCode-VF', monospace;
-}
-
 hr {
     border: 1px solid var(--border);
     margin: 16px 0;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    font-family: 'Raleway';
+    font-weight: bold;
+    border-bottom: var(--text) 1px solid;
+}
+
+td {
+    font-family: 'Oxygen';
+}
+
+tr:nth-child(even) {
+    background-color: var(--code-bg);
+}
+
+
+
 
 @media (max-width: 768px) {
     body {
