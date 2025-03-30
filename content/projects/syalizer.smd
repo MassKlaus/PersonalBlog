@@ -1,6 +1,6 @@
 ---
 .layout="blog.shtml",
-.title = "Projects",
+.title = "Syalizer",
 .description="A music visualizer",
 .author="Massine Mouha",
 .date = @date("2025-03-30T00:00:00"),
