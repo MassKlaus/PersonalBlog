@@ -3,7 +3,7 @@
 .title = "Projects",
 .description="A music visualizer",
 .author="Massine Mouha",
-.date = @date("2025-02-18T00:00:00"),
+.date = @date("2025-03-30T00:00:00"),
 ---
 
 Syalizer is a music visualizer, the idea was initially inspired by Tsoding's Musializer. 
