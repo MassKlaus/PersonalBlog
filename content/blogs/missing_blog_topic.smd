@@ -1,0 +1,8 @@
+---
+.title="I am thinking of a new topic here",
+.description="We will see",
+.author="Massine Mouha",
+.date=@date("2025-03-01T17:30:00"),
+.layout="blog.shtml",
+.draft=true
+---

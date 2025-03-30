@@ -1,6 +1,6 @@
 .{
     .name = "PersonalBlog",
-    .version = "0.0.0",
+    .version = "0.0.1",
     .dependencies = .{
         .zine = .{
             .url = "git+https://github.com/kristoff-it/zine?ref=v0.8.0#ec0f549654a4f7183d4520227b6748bba7ade98e",

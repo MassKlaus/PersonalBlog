@@ -1,0 +1,29 @@
+---
+.layout="blog.shtml",
+.title = "Projects",
+.description="A music visualizer",
+.author="Massine Mouha",
+.date = @date("2025-02-18T00:00:00"),
+---
+
+Syalizer is a music visualizer, the idea was initially inspired by Tsoding's Musializer. 
+
+Following behind his initial idea, this code base Makes use of the `FFT` to generate different sound amplitudes that we perceive as the music plays. 
+
+Using shaders that can be updated and replaced at runtime, Syalizer let's you apply any creative effect you might have on your mind. Be it a rainbow effect, increased line/bar thickness, some bloom, blurring and more.
+
+The main goal was getting comfortable with zig and slowly learning how to handle memory with it properly.
+
+This also supports rendering video through the FFMPEG cli. 
+
+Here is a little preview of the content.
+
+```=html
+<iframe width="420" height="315"
+src="https://www.youtube.com/watch?v=DanNElyrI_8">
+</iframe> 
+```
+
+The software is not fully done yet as I want to offer more freedom when rendering the output so future updates are still coming. 
+
+[The github repo](https://github.com/MassKlaus/syalizer)
