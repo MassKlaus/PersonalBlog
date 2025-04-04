@@ -2,8 +2,6 @@
 <title id="title" :text="$page.title"></title>
 <body id="body">
   <style>
-    h1, h2 {
-    }
     .highlight {
       display: grid;
       grid-template-columns: 1fr 1fr;
