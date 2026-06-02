@@ -1,0 +1,48 @@
+---
+.title="Minecraft, Botania, and a 1 000 000 parallel Conway Game of Life",
+.description="Attempting to min max Dandelifeons through smart computer use",
+.author="Massine Mouha",
+.date=@date("2025-03-01T17:30:00"),
+.layout="blog.shtml",
+.draft=true
+---
+
+# Part 1: How it all started
+
+# Part 2: Making a small simulation
+tldr: talk about the basics of conway's game of life
+then the changes from botania,
+
+let it run all night, no final results, notice multiplication error
+relaunch, finishes in under a few minutes! doesn't give quite an optimal solution sadly...
+Optimizing time, bong bonk bomg and boom, padded game grid to avoid branching, hitting cache is faster than branching
+hardcoding some offset values, comptime inlining some easy loops
+BAM done in under minute for more random searches.
+
+# Part 3: Parallelizing the simulation
+tldr: with the simulation working, we just needed to take this bad boy and drop it into multiple threads.... why are we getting the same results?
+Oh yeah, seed for the randomizer, well, let's pass a different seed for each simulation, fix some more bugs that I didn't notice.
+
+BADABIM BADABOOM, we now got 12 threads on my 5 5600 doing some really good work, but well just getting 1 setup from a single thread, not so great.
+
+# Part 4: More flowers per thread
+Change from single winner to top 10 winners, and now we're getting some really good results, but still not great.
+
+Wait, friend mentioned something about genetic algorithms and minor alterations to existing setups to see if it performs better or worse overall
+.... 
+
+# Part 5: Genetic Algorithms
+And many bugs later, we now can mutate a game board inital state and merge two game boards together as if they are genetic strands. Suprisingly, this does actually help improve the score a lot higher than I saw with just random change
+
+# Part 6: Now we are slow again
+Since I wasn't quite getting the results I wanted and I didn't perfect the genetic algorithm yet while waiting on feedback, I decided to do the smartest things ever. increase the sample size of random flowers we generated from about 10000 to 1000000.
+
+Cpu is taking long, not long enough to push to another solution but slow enough I am not happy. But results were barely improving.
+
+So naturally I just though, what if I just add more flowers? Clearly the smart thing to do! Cpu is slow though that'll kill me.... Well... There is another device on this pc.... Gpu-chan... shall we dance? 
+
+Now I am reading Vulkan, I feel like once I finish this, I could built a plan with my bare hands. VULKAN IS GRANTING ME ENDLESS POWER.
+
+# Part 7: The GPU
+
+We summon the vulkan demon and assend to godhood once I get to do it maybe.

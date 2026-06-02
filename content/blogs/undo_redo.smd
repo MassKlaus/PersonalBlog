@@ -1,0 +1,153 @@
+---
+.title="Undo and Redo",
+.description="Explaining how to implement undo and redo in some software",
+.author="Massine Mouha",
+.date=@date("2025-03-01T17:30:00"),
+.layout="blog.shtml",
+.draft=true
+---
+
+This blog will discuss the implementation of undo and redo in a system that can afford to keep things in memory during execution. Meaning, this will not tackle undo on the web with a database. That ones is a much more tedious and immense task than one would expect.
+
+This blog is based off some work I did for [FLVER_EDITOR](https://github.com/Pear0533/FLVER_Editor) by [Pear](https://github.com/Pear0533)
+
+# What is Undo and Redo
+
+It's a fundamental system in every software that allows you to rewind time in a file, it doesn't require much introduction. This feature often taken for granted has and is also often easy to implement if planned for early on in the development process.
+
+For our example, we will focus on a lightweight 3D model editor.
+
+Let's take a simple task, translation of a model. You select the model and input how much you want to translate it. But what exectly happened here data wise?
+
+Well, we edit the values of all vertices in the model, this is a large change in itself but if we represent it as an atomic operation that has a clear "before" and "after" state. Logically, it's a simple iteration that adds a vector to each vertex. 
+
+So if we want to undo this, we could simply substract the vector from the vertices.
+
+To achieve this cleanly, we need to track a few execution details, specifically which model we are mutating and the vector being applied.
+
+We can design an abstract class called `Operation` that has two methods, Execute and Undo that will be implemented by the concrete operations.
+
+For this example a `TranslationOperation` will be used.
+
+```csharp
+
+public abstract class Operation
+{
+    public abstract void Execute();
+    public abstract void Undo();
+}
+
+public class TranslationOperation : Operation
+{
+    public Vector3 Amount;
+    public Model Model;
+
+    public TranslationOperation(Model model, Vector3 amount)
+    {
+        Model = model;
+        Amount = amount;
+    }
+
+    public override void Execute()
+    {   
+        foreach (var vertex in Model.Vertices)
+        {
+            vertex.Position += Amount;
+        }
+    }
+
+    public override void Undo()
+    {
+        foreach (var vertex in Model.Vertices)
+        {
+            vertex.Position -= Amount;
+        }
+    }
+}
+```
+
+We now have an operation that we can execute to execute it's own effects and we are able to also logically reverse it. This is the core of this Command Pattern: most operations are easy to execute and undo as long as we save the context required to run them.
+
+Let's do rotation next.
+
+```csharp
+public class RotationOperation : Operation
+{
+    public Vector3 Amount;
+    public Model Model;
+
+    public RotationOperation(Model model, Vector3 amount)
+    {
+        Model = model;
+        Amount = amount;
+    }
+
+    public override void Execute()
+    {
+        var rotation = Matrix4x4.CreateFromYawPitchRoll(Amount.Y, Amount.X, Amount.Z);
+        foreach (var vertex in Model.Vertices)
+        {
+            vertex.Position = Vector3.Transform(vertex.Position, rotation);
+        }
+    }
+
+    public override void Undo()
+    {
+        var rotation = Matrix4x4.CreateFromYawPitchRoll(Amount.Y, Amount.X, Amount.Z);
+        Matrix4x4.Invert(rotation, out var inverse);
+        foreach (var vertex in Model.Vertices)
+        {
+            vertex.Position = Vector3.Transform(vertex.Position, inverse);
+        }
+    }
+}
+```
+
+This is simple concept grants us a lot power. So long as we can store the delta of the operation, we are able to modify our data and quickly restore it. This is good, we love this!
+
+# History Tracking
+
+To actually use these operations, we need a history tracking structure. A linear history can be elegantly represented using two stacks: one for operations we can undo, and one for operations we can redo.
+
+```csharp
+private Stack<Operation> UndoStack = new Stack<Operation>();
+private Stack<Operation> RedoStack = new Stack<Operation>();
+```
+
+When a user performs a new action, we execute it, push it onto the UndoStack, and completely clear the RedoStack since the timeline has diverged.
+
+```csharp
+public void Do(Operation operation)
+{
+    operation.Execute();
+    UndoStack.Push(operation);
+    RedoStack.Clear(); // New actions break the redo chain
+}
+
+public void Undo() 
+{
+    if (UndoStack.Count > 0)
+    {
+        var operation = UndoStack.Pop();
+        operation.Undo();
+        RedoStack.Push(operation);
+    }
+}
+
+public void Redo() 
+{
+    if (RedoStack.Count > 0)
+    {
+        var operation = RedoStack.Pop();
+        operation.Execute();
+        UndoStack.Push(operation);
+    }
+}
+```
+
+Note on Stack Logic: In the implementation above, we safely pop the operation first, execute its transition state, and then push it onto the opposing stack to keep our history clean and prevent duplication bugs.
+
+This represents a classic linear history. A more complex system might implement a non-linear command tree, which permits users to explore completely different historical branches without losing discarded states. While most software does not strictly require a full tree structure, it is a fascinating architecture I'd love to explore.
+# Conclusion   
+
+When your software maintains an internal state and does not need to hit a disk or database for every mutation, undo and redo infrastructure is incredibly straightforward to build. By wrapping logic into distinct, self-contained operations, you can provide an essential user experience feature with minimal architectural overhead.
