@@ -2,7 +2,7 @@
 .title="Undo and Redo",
 .description="Explaining how to implement undo and redo in some software",
 .author="Massine Mouha",
-.date=@date("2026-06-03T17:30:00"),
+.date=@date("2026-06-02T17:30:00"),
 .layout="blog.shtml",
 .draft=false
 ---
