@@ -35,6 +35,7 @@
         <div class="site-items" :loop="$site.page('blogs').subpages()">
           <a href="$loop.it.link()" :text="$loop.it.title"></a>
           <span class="date">
+            At
             <span :text='$loop.it.date.format("02/01/2006")'></span>
           </span>
         </div>
