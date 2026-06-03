@@ -29,7 +29,7 @@ We can design an abstract class called `Operation` that has two methods, Execute
 
 For this example a `TranslationOperation` will be used.
 
-```csharp
+```
 
 public abstract class Operation
 {
@@ -70,7 +70,7 @@ We now have an operation that we can execute to execute it's own effects and we 
 
 Let's do rotation next.
 
-```csharp
+```
 public class RotationOperation : Operation
 {
     public Vector3 Amount;
@@ -109,14 +109,14 @@ This is simple concept grants us a lot power. So long as we can store the delta 
 
 To actually use these operations, we need a history tracking structure. A linear history can be elegantly represented using two stacks: one for operations we can undo, and one for operations we can redo.
 
-```csharp
+```
 private Stack<Operation> UndoStack = new Stack<Operation>();
 private Stack<Operation> RedoStack = new Stack<Operation>();
 ```
 
 When a user performs a new action, we execute it, push it onto the UndoStack, and completely clear the RedoStack since the timeline has diverged.
 
-```csharp
+```
 public void Do(Operation operation)
 {
     operation.Execute();
